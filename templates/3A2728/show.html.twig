@@ -1,0 +1,90 @@
+ 
+ 
+ bonjour {{key |lower}}
+<hr>
+
+ {% set nb=123 %}
+
+ {{nb}}
+ <hr>
+ <table border="2">
+    <tr>
+<td> ref</td>
+<td> titre</td>
+<td>Description</td>
+<td>nb_participants</td>
+<td>Action</td>
+    </tr>
+ {% for v in f %}
+ <tr>
+    <td>
+{{v.ref}}
+</td>
+<td>
+    {{v.Titre}}
+    </td>
+    <td>
+        {{v.Description}}
+        </td>
+        <td>
+            {{v.nb_participants}}
+            </td>
+        <td>
+           <a href="{{path('test123',{'t':v.Titre})}}">details</a>
+            </td>
+ </tr>
+ {% endfor %}
+ </table>
+ <hr>
+ nb formation {{f |length}}
+ <hr>
+ {% set nbp=0 %}
+ {% for v in f %}
+{% set nbp=nbp+ v.nb_participants %}       
+ {% endfor %}
+ nb de participants{{nbp}}
+ <hr>
+ {% set nbmax=0 %}
+
+ {% for v in f %}
+ {% if v.nb_participants>nbmax %}   
+ {% set nbmax=v.nb_participants %}
+ {% endif %}
+
+ {% endfor %}
+ {{nbmax}}
+ <hr>
+ <table border="2">
+    <tr>
+<td> ref</td>
+<td> titre</td>
+<td>Description</td>
+<td>nb_participants</td>
+    </tr>
+ {% for v in f %}
+ {% if nbmax==v.nb_participants %}
+ <tr>
+    <td>
+{{v.ref}}
+</td>
+<td>
+    {{v.Titre}}
+    </td>
+    <td>
+        {{v.Description}}
+        </td>
+        <td>
+            {{v.nb_participants}}
+            </td>
+       
+ </tr>
+ {% endif %}
+ {% endfor %}
+ </table>
+ <hr>
+ {% if key starts with 'M'%}
+ bonjour mohamed sdkjfsdkfdsf
+ {%endif%}
+ {# #}
+ <hr>
+ {{dump(f)}}
