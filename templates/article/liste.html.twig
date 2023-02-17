@@ -1,0 +1,7 @@
+{% for a in articles%}
+
+{{a.ref}}
+{{a.titre}}
+{{a.createdAt | date('y-d-m')}}
+<a href="{{path('remove3',{'id':a.ref})}}">remove </a>
+{% endfor %}
