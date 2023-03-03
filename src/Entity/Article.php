@@ -18,6 +18,10 @@ class Article
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'art')]
+    #[ORM\JoinColumn(name: "cate_Id", referencedColumnName: "catid")]
+    private ?Category $cat = null;
+
     public function getref(): ?int
     {
         return $this->ref;
@@ -49,6 +53,18 @@ class Article
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCat(): ?Category
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?Category $cat): self
+    {
+        $this->cat = $cat;
 
         return $this;
     }
