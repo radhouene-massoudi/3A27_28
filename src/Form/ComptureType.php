@@ -2,28 +2,21 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
-use App\Entity\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Compture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class ComptureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ref')
-            //->add('titre')
-            //->add('createdAt')
-            ->add('cat',EntityType::class,[
-              'class' =>Category::class,
-              'choice_label'=>'catid',
-              'expanded'=>true,
-              'multiple'=>true
-            ])
+            ->add('Mac')
+            ->add('pros')
+            //->add('ram')
+           // ->add('dep')
             ->add('save',SubmitType::class)
         ;
     }
@@ -31,7 +24,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Compture::class,
         ]);
     }
 }

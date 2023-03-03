@@ -1,0 +1,5 @@
+{% for deps in deps %}
+
+{{deps.name}}
+<a href="{{path('addcom',{'iddep':deps.id})}}"> affecter </a>
+{% endfor %}
