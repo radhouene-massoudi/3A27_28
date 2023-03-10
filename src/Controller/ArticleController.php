@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use DateTimeImmutable;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,5 +88,20 @@ return new Response('ref deja existe');
         return $this->renderForm('article/addarticle.html.twig', [
             'formarticle' => $f
         ]);
+    }
+    #[Route('/dql', name: 'dql')]
+    public function dql(EntityManagerInterface $em)
+    {
+$req=$em->createQuery("select a test from App\Entity\Article a where a.titre=?1  ");
+$req->setParameter('1','esprit');
+$result=$req->getResult();
+dd($result);
+    }
+
+    #[Route('/dqlfromrepo', name: 'dqlfromrepo')]
+    public function dqlfromrepo(ArticleRepository $repo)
+    {
+$result=$repo->myFindALL();
+dd($result);
     }
 }

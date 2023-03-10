@@ -63,4 +63,29 @@ class ArticleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function fetchArticle()
+{
+    $sql=$this->getEntityManager();
+    $req=$sql->createQuery("select a test from App\Entity\Article a where a.titre=?1");
+    $req->setParameter('1','esprit');
+    $result=$req->getResult();
+    return $result;
+}
+
+public function myFindALL()
+   {
+    $test=true;
+    $req= $this->createQueryBuilder('a')
+
+    ->select('a.titre');
+    //->join('a.cat','c')
+    //->addSelect('c.name')
+    if($test){
+    $req->where("a.titre=:n")
+    ->setParameter(':n','esprit');
+}
+   return $req->getQuery()
+    ->getResult();
+    
+   }
 }

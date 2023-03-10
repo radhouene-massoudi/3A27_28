@@ -16,7 +16,7 @@ class ComptureType extends AbstractType
             ->add('Mac')
             ->add('pros')
             //->add('ram')
-           // ->add('dep')
+            ->add('dep')
             ->add('save',SubmitType::class)
         ;
     }
